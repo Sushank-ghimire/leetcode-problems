@@ -1,7 +1,3 @@
-Here’s a `README.md` file containing explanations and solutions for the listed LeetCode problems:
-
----
-
 # LeetCode Problems with Solutions
 
 This document contains a set of JavaScript/TypeScript problems with detailed explanations and solutions.
