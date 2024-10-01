@@ -1,7 +1,3 @@
-Here’s a `README.md` file containing explanations and solutions for the listed LeetCode problems:
-
----
-
 # LeetCode Problems with Solutions
 
 This document contains a set of JavaScript/TypeScript problems with detailed explanations and solutions.
@@ -217,6 +213,7 @@ console.log(onceFunc(1, 3, 4)); // undefined
 
 ---
 
+<<<<<<< HEAD
 ## 10. Memoization
 **Problem**: Given a function `fn`, return a memoized version of that function. A memoized function caches results so that it will never be called twice with the same inputs.
 
@@ -248,3 +245,6 @@ const memoizedSum = memoize(function (a: number, b: number) {
 console.log(memoizedSum(2, 3)); // 5
 console.log(memoizedSum(2, 3)); // 5 (cached)
 console.log(callCount); // 1
+=======
+These solutions solve the respective problems efficiently with clear explanations.
+>>>>>>> 492b38ace402f5a226c6d7890a75f8174b78b5d1
