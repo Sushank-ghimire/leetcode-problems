@@ -213,7 +213,7 @@ console.log(onceFunc(1, 3, 4)); // undefined
 
 ---
 
-<<<<<<< HEAD
+
 ## 10. Memoization
 **Problem**: Given a function `fn`, return a memoized version of that function. A memoized function caches results so that it will never be called twice with the same inputs.
 
@@ -245,6 +245,81 @@ const memoizedSum = memoize(function (a: number, b: number) {
 console.log(memoizedSum(2, 3)); // 5
 console.log(memoizedSum(2, 3)); // 5 (cached)
 console.log(callCount); // 1
-=======
-These solutions solve the respective problems efficiently with clear explanations.
->>>>>>> 492b38ace402f5a226c6d7890a75f8174b78b5d1
+```
+---
+
+Here’s the `README.md` entry for the **12th problem** (Array Merge Based on `id`):
+
+---
+
+
+## 12. Array Merge Based on `id`
+
+### Problem:
+Given two arrays `arr1` and `arr2`, return a new array `joinedArray`. Both input arrays contain objects with an `id` field (an integer). The task is to merge the two arrays based on the `id` field with the following rules:
+
+1. If an `id` exists in one array but not the other, include the object as is.
+2. If an `id` exists in both arrays, merge the objects:
+   - If a key exists in one object but not the other, include that key-value pair.
+   - If a key exists in both objects, the value from `arr2` should override the value from `arr1`.
+3. The resulting array should have no duplicate `id`s and should be sorted by `id` in ascending order.
+
+### Solution:
+```javascript
+function joinArrays(arr1, arr2) {
+  const map = new Map();
+
+  // Add all elements of arr1 to the map based on their id
+  for (const obj of arr1) {
+    map.set(obj.id, { ...obj });
+  }
+
+  // Merge arr2 elements into the map based on their id
+  for (const obj of arr2) {
+    if (map.has(obj.id)) {
+      // If the id exists, merge the properties, prioritizing arr2 values
+      map.set(obj.id, { ...map.get(obj.id), ...obj });
+    } else {
+      // If the id doesn't exist, just add the object from arr2
+      map.set(obj.id, { ...obj });
+    }
+  }
+
+  // Convert map back to an array and sort it by id in ascending order
+  return Array.from(map.values()).sort((a, b) => a.id - b.id);
+}
+
+// Example usage:
+const arr1 = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' },
+  { id: 4, age: 25 }
+];
+
+const arr2 = [
+  { id: 2, name: 'Robert' },
+  { id: 3, name: 'Charlie' },
+  { id: 4, name: 'Eve' }
+];
+
+const result = joinArrays(arr1, arr2);
+console.log(result);
+```
+
+### Example Output:
+```bash
+[
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Robert' },
+  { id: 3, name: 'Charlie' },
+  { id: 4, age: 25, name: 'Eve' }
+]
+```
+
+### Explanation:
+1. A `Map` is used to store objects by their `id` field.
+2. We first loop through `arr1` and add each object to the `Map`.
+3. We then loop through `arr2` and merge its objects with those already in the `Map`, prioritizing values from `arr2` when there is a conflict.
+4. The final result is an array of merged objects, sorted by `id`.
+
+---
