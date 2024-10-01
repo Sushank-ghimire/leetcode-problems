@@ -217,4 +217,34 @@ console.log(onceFunc(1, 3, 4)); // undefined
 
 ---
 
-These solutions solve the respective problems efficiently with clear explanations.
+## 10. Memoization
+**Problem**: Given a function `fn`, return a memoized version of that function. A memoized function caches results so that it will never be called twice with the same inputs.
+
+**Solution**:
+```typescript
+function memoize(fn: (...args: any[]) => any) {
+  let cache: { [key: string]: any } = {};
+  
+  return function (...args: any[]) {
+    const key = JSON.stringify(args);
+    
+    if (key in cache) {
+      return cache[key];
+    }
+
+    const result = fn(...args);
+    cache[key] = result;
+    return result;
+  };
+}
+
+// Example usage:
+let callCount = 0;
+const memoizedSum = memoize(function (a: number, b: number) {
+  callCount += 1;
+  return a + b;
+});
+
+console.log(memoizedSum(2, 3)); // 5
+console.log(memoizedSum(2, 3)); // 5 (cached)
+console.log(callCount); // 1
