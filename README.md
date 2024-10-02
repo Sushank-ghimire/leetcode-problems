@@ -322,4 +322,81 @@ console.log(result);
 3. We then loop through `arr2` and merge its objects with those already in the `Map`, prioritizing values from `arr2` when there is a conflict.
 4. The final result is an array of merged objects, sorted by `id`.
 
+
+---
+
+## 13. Add Two Promises
+
+### Problem:
+Given two promises, `promise1` and `promise2`, write a function `addTwoPromises` that resolves both promises and returns a new promise which contains the sum of the two resolved values.
+
+### Solution:
+```javascript
+/**
+ * @param {Promise} promise1
+ * @param {Promise} promise2
+ * @return {Promise}
+ */
+var addTwoPromises = async function(promise1, promise2) {
+    const result1 = await promise1;
+    const result2 = await promise2;
+    return result1 + result2;
+};
+
+/**
+ * Example usage:
+ * addTwoPromises(Promise.resolve(2), Promise.resolve(2))
+ *   .then(console.log); // Output: 4
+ */
+```
+
+### Explanation:
+- The `addTwoPromises` function is asynchronous and waits for both `promise1` and `promise2` to resolve.
+- Once both promises are resolved, it sums their resolved values and returns the result in a new promise.
+- The result can be accessed using `.then()`.
+
+### Example Output:
+```bash
+addTwoPromises(Promise.resolve(2), Promise.resolve(2)) // Logs: 4
+```
+
+---
+
+## 14. Sleep Function
+
+### Problem:
+Write an asynchronous `sleep` function that takes a number `millis` (milliseconds) and returns a promise that resolves after the specified delay.
+
+### Solution:
+```javascript
+/**
+ * @param {number} millis
+ * @return {Promise}
+ */
+async function sleep(millis) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(); // Resolve after the timeout
+        }, millis);
+    });
+}
+
+/** 
+ * Example usage:
+ * let t = Date.now();
+ * sleep(100).then(() => console.log(Date.now() - t)); // Approximately 100ms
+ */
+```
+
+### Explanation:
+- The `sleep` function returns a promise that uses `setTimeout` to delay the execution by `millis` milliseconds.
+- After the delay, the promise is resolved, and the `.then()` function will run.
+- This effectively "pauses" execution for the given amount of time.
+
+### Example Output:
+```bash
+let t = Date.now();
+sleep(100).then(() => console.log(Date.now() - t)); // Logs: Approximately 100ms
+```
+
 ---
